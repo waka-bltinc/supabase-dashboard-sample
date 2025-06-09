@@ -4,7 +4,10 @@
       "Bash(mkdir:*)",
       "Bash(mv:*)",
       "Bash(npx supabase db reset:*)",
-      "WebFetch(domain:zenn.dev)"
+      "WebFetch(domain:zenn.dev)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(find:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }

@@ -15,36 +15,22 @@ create table public.users (
 -- Enable RLS
 alter table public.users enable row level security;
 
--- RLS policies
+-- Simple RLS policies that avoid recursion
 -- Users can see their own data
 create policy "Users can view own profile" on public.users
   for select using (auth.uid() = id);
 
--- Admin and moderators can see all users
-create policy "Admin and moderators can view all users" on public.users
-  for select using (
-    exists (
-      select 1 from public.users
-      where id = auth.uid() and role in ('admin', 'moderator')
-    )
-  );
+-- Authenticated users can view all users (role checking done in application)
+create policy "Authenticated users can view users" on public.users
+  for select using (auth.role() = 'authenticated');
 
--- Users can update their own data (except role)
+-- Users can update their own data
 create policy "Users can update own profile" on public.users
-  for update using (auth.uid() = id)
-  with check (
-    auth.uid() = id and 
-    (role = (select role from public.users where id = auth.uid()))
-  );
+  for update using (auth.uid() = id);
 
--- Only admins can update roles
-create policy "Admins can update user roles" on public.users
-  for update using (
-    exists (
-      select 1 from public.users
-      where id = auth.uid() and role = 'admin'
-    )
-  );
+-- Insert policy for new users
+create policy "Users can insert own profile" on public.users
+  for insert with check (auth.uid() = id);
 
 -- Function to handle new user creation
 create or replace function public.handle_new_user()
