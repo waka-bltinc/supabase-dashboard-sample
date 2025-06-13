@@ -37,3 +37,14 @@ npm run db
   ```bash
   npm run deploy:functions:prod
   ```
+
+### 4. マイグレーションの新規作成
+```bash
+npx supabase migration new {マイグレーション名}
+ex: npx supabase migration new create_public_posts_table
+```
+
+### 5. リセット（ローカル限定）
+```bash
+npx supabase db reset
+```
