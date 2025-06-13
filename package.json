@@ -14,7 +14,7 @@
 
 		"db": "npm run env:local && supabase start",
 
-		"migrate:local": "npm run env:local && supabase db push npm run env:local",
+		"migrate:local": "npm run env:local && supabase db push && npm run env:local",
 		"migrate:stg": "npm run env:stg && supabase db push && npm run env:local",
 		"migrate:prod": "npm run env:prod && supabase db push && npm run env:local",
 
