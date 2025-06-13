@@ -1,0 +1,37 @@
+name: PROD Database Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'PRODにマイグレーションを適用'
+        required: true
+        type: string
+
+jobs:
+  migrate-production:
+    if: github.event.inputs.confirmation == 'PRODにマイグレーションを適用'
+    runs-on: ubuntu-latest
+    environment: PROD
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run migration on production
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        run: supabase db push
+        
+      - name: Output result
+        run: echo "✅ PROD環境へのマイグレーションが完了しました"

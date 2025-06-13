@@ -1,15 +1,16 @@
-name: Deploy to Staging
+name: STG Database Migration
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - staging
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'STGにマイグレーションを適用'
+        required: true
+        type: string
 
 jobs:
-  deploy-staging-functions:
-    if: github.event.pull_request.merged == true
+  migrate-staging:
+    if: github.event.inputs.confirmation == 'STGにマイグレーションを適用'
     runs-on: ubuntu-latest
     environment: STG
     
@@ -26,8 +27,11 @@ jobs:
       - name: Install dependencies
         run: npm install
         
-      - name: Deploy to Supabase
+      - name: Run migration on staging
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-        run: npx supabase functions deploy
+        run: supabase db push
+        
+      - name: Output result
+        run: echo "✅ STG環境へのマイグレーションが完了しました"
