@@ -8,19 +8,10 @@
 		"check": "biome check --write ./app/**/* ./components/**/* ./lib/**/*",
 		"start": "next start",
 
-		"env:local": "cp supabase/config.local.toml supabase/config.toml && cp .env.local .env",
-		"env:stg": "cp supabase/config.stg.toml supabase/config.toml && cp .env.stg .env",
-		"env:prod": "cp supabase/config.prod.toml supabase/config.toml && cp .env.prod .env",
-
-		"db": "npm run env:local && supabase start",
-
-		"migrate:local": "npm run env:local && supabase db push && npm run env:local",
-		"migrate:stg": "npm run env:stg && supabase db push && npm run env:local",
-		"migrate:prod": "npm run env:prod && supabase db push && npm run env:local",
-
-		"deploy:functions:local": "npm run env:local && supabase functions deploy && npm run env:local",
-		"deploy:functions:stg": "npm run env:stg && supabase functions deploy && npm run env:local",
-		"deploy:functions:prod": "npm run env:prod && supabase functions deploy && npm run env:local"
+		"db": "supabase start",
+		"db:reset": "supabase db reset",
+		"migrate": "supabase db push",
+		"func": "supabase function deploy"
 	},
 	"dependencies": {
 		"@radix-ui/react-checkbox": "^1.3.1",

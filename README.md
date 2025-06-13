@@ -6,36 +6,16 @@
 npm run db
 ```
 
-### 2. 各環境にマイグレーションを適用
+### 2. マイグレーションを適用
 - ローカル
   ```bash
-  npm run migrate:local
+  npm run migrate
   ```
 
-- STG
-  ```bash
-  npm run migrate:stg
-  ```
-
-- PROD
-  ```bash
-  npm run migrate:prod
-  ```
-
-### 3. 各環境にサーバレス関数のデプロイ
+### 3. サーバレス関数の追加
 - ローカル
   ```bash
-  npm run deploy:functions:local
-  ```
-
-- STG
-  ```bash
-  npm run deploy:functions:stg
-  ```
-
-- PROD
-  ```bash
-  npm run deploy:functions:prod
+  npm run func
   ```
 
 ### 4. マイグレーションの新規作成
@@ -44,7 +24,7 @@ npx supabase migration new {マイグレーション名}
 ex: npx supabase migration new create_public_posts_table
 ```
 
-### 5. リセット（ローカル限定）
+### 5. リセット
 ```bash
-npx supabase db reset
+npm run db:reset
 ```
