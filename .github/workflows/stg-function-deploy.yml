@@ -1,0 +1,38 @@
+name: Deploy to Staging
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - staging
+
+jobs:
+  deploy-staging-functions:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Deploy to Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL_STG }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_STG }}
+        run: npm run deploy:functions:stg
+
+      - name: Deploy to Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL_STG }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_STG }}
+        run: npm run deploy:functions:stg
