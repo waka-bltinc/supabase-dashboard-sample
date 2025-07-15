@@ -2,11 +2,11 @@ pre-push:
   commands:
     packages-audit:
       tags: frontend security
-      run: npm audit
+      run: npm audit && npm run check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {push_files}
 
 pre-commit:
-  parallel: true
   commands:
-    biome:
-      glob: "src/**/*.{js,ts,jsx,tsx}"
-      run: npx @biomejs/biome check --write {staged_files}
+    check:
+      glob: "{app,components,lib}/**/*.{js,ts,jsx,tsx}"
+      run: npm run check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+      stage_fixed: true
