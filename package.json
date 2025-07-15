@@ -7,7 +7,10 @@
 		"format": "biome format --write ./app/**/* ./components/**/* ./lib/**/*",
 		"check": "biome check --write ./app/**/* ./components/**/* ./lib/**/*",
 		"start": "next start",
-
+		"test": "vitest",
+		"test:ui": "vitest --ui",
+		"test:run": "vitest run",
+		"test:watch": "vitest --watch",
 		"db": "supabase start",
 		"db:reset": "supabase db reset",
 		"migrate": "supabase db push",
@@ -31,14 +34,20 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.3.0",
+		"@testing-library/user-event": "^14.6.1",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
+		"@vitejs/plugin-react": "^4.6.0",
 		"autoprefixer": "^10.4.20",
+		"jsdom": "^26.1.0",
 		"lefthook": "^1.11.13",
 		"postcss": "^8",
 		"tailwindcss": "^3.4.1",
 		"tailwindcss-animate": "^1.0.7",
-		"typescript": "^5"
+		"typescript": "^5",
+		"vitest": "^3.2.4"
 	}
 }
