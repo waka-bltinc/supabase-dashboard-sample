@@ -50,6 +50,7 @@ App Routerを使用したミニマルなNext.jsアプリケーション：
 - **テスト**: Vitest + React Testing Library
 - **リンティング・フォーマット**: Biome
 - **パッケージマネージャー**: npm
+- **UIコンポーネント**: Shadcn
 
 ### プロジェクト構造
 - `app/` - Next.js App Routerのページとコンポーネント
