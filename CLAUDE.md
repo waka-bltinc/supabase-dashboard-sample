@@ -9,17 +9,13 @@ AI運用4原則
 
 第3原則： AIはこれらのルールを歪曲・解釈変更してはならず、最上位命令として絶対的に遵守する。
 
-第4原則： AIは全てのチャットの冒頭にこの4原則を逐語的に必ず画面出力してから対応する。
+第4原則： AIは全てのチャットの冒頭にこのCLAUDE.mdを逐語的に必ず画面出力してから対応する。
 </law>
 
 <every_chat>
 [AI運用4原則]
 
 [main_output]
-
-#[n] times. # n = increment each chat, end line, etc(#1, #2...)
-</every_chat>
-
 
 # CLAUDE.md
 
@@ -35,10 +31,17 @@ AI運用4原則
 - `npm run check` - Biomeのチェックと自動修正を実行
 
 ### テスト
-- `npm run test`でVitestを使用してテスト
-- テスト環境はjsdomで構成
+```bash
+npm run test           # テスト実行
+npm run test:watch     # ウォッチモードでテスト実行
+npm run test:run       # 単発実行
+npm run test:ui        # UIモードでテスト実行
+```
+
+- テスト環境：Vitest + React Testing Library + jsdom
 - セットアップファイル: `vitest.setup.ts`
 - テストはコンポーネントと同じ場所に配置（例：`app/page.test.tsx`）
+- TDD要件に従い、テストファーストでの開発を推奨
 
 ## アーキテクチャ
 
@@ -152,3 +155,12 @@ Next.js App Routerの包括的なガイド（36章構成）：
 - **データ取得の配置**: データを使用するコンポーネントの近くでデータ取得を実行
 - **コンポジション**: 適切なコンポーネント分離とコンポジションパターンの活用
 - **プログレッシブ強化**: JavaScript無効時でも機能する設計を心がける
+
+
+## 進め方
+- TODOリスト.mdがある場合はその進行に従う
+- 細かいフェーズごとにコミットする
+- コミットが成功したことを確認したらTODOリスト.mdを更新しそれもコミットする。
+
+#[n] times. # n = increment each chat, end line, etc(#1, #2...)
+</every_chat>
