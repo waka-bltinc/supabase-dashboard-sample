@@ -1,16 +1,20 @@
-import { DashboardSidebar } from "@/components/supabase-default/dashboard-sidebar";
+import { DashboardHeader } from "@/components/common/dashboard-header";
+import { DashboardSidebar } from "@/components/common/dashboard-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-export default function DashboardLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
+	const breadcrumbs = [
+		{ label: "ホーム", href: "/", icon: "Home" },
+		{ label: "ダッシュボード" },
+	];
+
 	return (
-		<div className="flex h-screen bg-gray-100 dark:bg-gray-800">
+		<SidebarProvider>
 			<DashboardSidebar />
-			<div className="flex-1 flex flex-col overflow-hidden">
-				<main className="flex-1 overflow-y-auto p-6">{children}</main>
-			</div>
-		</div>
+			<SidebarInset>
+				<DashboardHeader title="ダッシュボード" breadcrumbs={breadcrumbs} />
+				<main className="flex-1 p-6">{children}</main>
+			</SidebarInset>
+		</SidebarProvider>
 	);
 }

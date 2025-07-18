@@ -10,7 +10,8 @@ export async function UserProfileCard() {
 		user = result.user || null;
 		error = result.error;
 	} catch (err) {
-		error = err instanceof Error ? err.message : "ユーザー情報の取得に失敗しました";
+		error =
+			err instanceof Error ? err.message : "ユーザー情報の取得に失敗しました";
 	}
 
 	return <UserProfileCardPresentational user={user} error={error} />;

@@ -1,8 +1,8 @@
-import { describe, test, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-import { step } from "@akfm/test-utils";
-import { UserProfileCardPresentational } from "./user-profile-card-presentational";
 import type { User } from "@/lib/users/types";
+import { step } from "@akfm/test-utils";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
+import { UserProfileCardPresentational } from "./user-profile-card-presentational";
 
 const mockUser: User = {
 	id: "1",
@@ -23,7 +23,8 @@ describe("UserProfileCardPresentational", () => {
 					user: mockUser,
 					error: null,
 				}),
-				act: ({ user, error }) => render(<UserProfileCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(<UserProfileCardPresentational user={user} error={error} />),
 				assert: () => {
 					expect(screen.getByText("プロフィール情報")).toBeInTheDocument();
 					expect(screen.getByText("test@example.com")).toBeInTheDocument();
@@ -40,7 +41,8 @@ describe("UserProfileCardPresentational", () => {
 					user: { ...mockUser, first_name: null, last_name: null },
 					error: null,
 				}),
-				act: ({ user, error }) => render(<UserProfileCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(<UserProfileCardPresentational user={user} error={error} />),
 				assert: () => {
 					expect(screen.getByText("test@example.com")).toBeInTheDocument();
 					expect(screen.queryByText("名前")).not.toBeInTheDocument();
@@ -55,7 +57,8 @@ describe("UserProfileCardPresentational", () => {
 					user: { ...mockUser, role: "moderator" as const },
 					error: null,
 				}),
-				act: ({ user, error }) => render(<UserProfileCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(<UserProfileCardPresentational user={user} error={error} />),
 				assert: () => {
 					expect(screen.getByText("モデレーター")).toBeInTheDocument();
 				},
@@ -71,10 +74,13 @@ describe("UserProfileCardPresentational", () => {
 					user: null,
 					error: "テストエラー",
 				}),
-				act: ({ user, error }) => render(<UserProfileCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(<UserProfileCardPresentational user={user} error={error} />),
 				assert: () => {
 					expect(screen.getByText("テストエラー")).toBeInTheDocument();
-					expect(screen.queryByText("プロフィール情報")).not.toBeInTheDocument();
+					expect(
+						screen.queryByText("プロフィール情報"),
+					).not.toBeInTheDocument();
 				},
 			}),
 		);
@@ -86,9 +92,12 @@ describe("UserProfileCardPresentational", () => {
 					user: null,
 					error: null,
 				}),
-				act: ({ user, error }) => render(<UserProfileCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(<UserProfileCardPresentational user={user} error={error} />),
 				assert: () => {
-					expect(screen.getByText("ユーザー情報の取得に失敗しました")).toBeInTheDocument();
+					expect(
+						screen.getByText("ユーザー情報の取得に失敗しました"),
+					).toBeInTheDocument();
 				},
 			}),
 		);

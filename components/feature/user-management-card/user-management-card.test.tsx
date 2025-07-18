@@ -1,8 +1,8 @@
-import { describe, test, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-import { step } from "@akfm/test-utils";
-import { UserManagementCardPresentational } from "./user-management-card-presentational";
 import type { User } from "@/lib/users/types";
+import { step } from "@akfm/test-utils";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
+import { UserManagementCardPresentational } from "./user-management-card-presentational";
 
 const mockAdminUser: User = {
 	id: "1",
@@ -33,10 +33,15 @@ describe("UserManagementCardPresentational", () => {
 					user: mockAdminUser,
 					error: null,
 				}),
-				act: ({ user, error }) => render(<UserManagementCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(
+						<UserManagementCardPresentational user={user} error={error} />,
+					),
 				assert: () => {
 					expect(screen.getByText("ユーザー管理")).toBeInTheDocument();
-					expect(screen.getByText("システム内のユーザーを確認・管理できます")).toBeInTheDocument();
+					expect(
+						screen.getByText("システム内のユーザーを確認・管理できます"),
+					).toBeInTheDocument();
 					expect(screen.getByText("ユーザー一覧を見る")).toBeInTheDocument();
 				},
 			}),
@@ -49,7 +54,10 @@ describe("UserManagementCardPresentational", () => {
 					user: mockAdminUser,
 					error: null,
 				}),
-				act: ({ user, error }) => render(<UserManagementCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(
+						<UserManagementCardPresentational user={user} error={error} />,
+					),
 				assert: () => {
 					const link = screen.getByRole("link");
 					expect(link).toHaveAttribute("href", "/dashboard/users");
@@ -66,7 +74,10 @@ describe("UserManagementCardPresentational", () => {
 					user: { ...mockAdminUser, role: "moderator" as const },
 					error: null,
 				}),
-				act: ({ user, error }) => render(<UserManagementCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(
+						<UserManagementCardPresentational user={user} error={error} />,
+					),
 				assert: () => {
 					expect(screen.getByText("ユーザー管理")).toBeInTheDocument();
 				},
@@ -82,7 +93,10 @@ describe("UserManagementCardPresentational", () => {
 					user: mockRegularUser,
 					error: null,
 				}),
-				act: ({ user, error }) => render(<UserManagementCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(
+						<UserManagementCardPresentational user={user} error={error} />,
+					),
 				assert: () => {
 					expect(screen.queryByText("ユーザー管理")).not.toBeInTheDocument();
 				},
@@ -98,7 +112,10 @@ describe("UserManagementCardPresentational", () => {
 					user: null,
 					error: "テストエラー",
 				}),
-				act: ({ user, error }) => render(<UserManagementCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(
+						<UserManagementCardPresentational user={user} error={error} />,
+					),
 				assert: () => {
 					expect(screen.queryByText("ユーザー管理")).not.toBeInTheDocument();
 				},
@@ -112,7 +129,10 @@ describe("UserManagementCardPresentational", () => {
 					user: null,
 					error: null,
 				}),
-				act: ({ user, error }) => render(<UserManagementCardPresentational user={user} error={error} />),
+				act: ({ user, error }) =>
+					render(
+						<UserManagementCardPresentational user={user} error={error} />,
+					),
 				assert: () => {
 					expect(screen.queryByText("ユーザー管理")).not.toBeInTheDocument();
 				},
