@@ -1,6 +1,6 @@
 import type { User } from "@/lib/users/types";
 
-export interface DashboardPagePresentationalProps {
+export interface UserManagementCardPresentationalProps {
 	user: User | null;
 	error: string | null;
 }
