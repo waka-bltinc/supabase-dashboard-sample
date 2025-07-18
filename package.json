@@ -6,6 +6,7 @@
 		"lint": "biome lint --write ./app/**/* ./components/**/* ./lib/**/*",
 		"format": "biome format --write ./app/**/* ./components/**/* ./lib/**/*",
 		"check": "biome check --write ./app/**/* ./components/**/* ./lib/**/*",
+		"typecheck": "tsc --noEmit",
 		"start": "next start",
 		"test": "vitest",
 		"test:ui": "vitest --ui",

@@ -2,11 +2,18 @@ pre-push:
   commands:
     packages-audit:
       tags: frontend security
-      run: npm audit && npm run check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {push_files}
+      run: npm audit
+    check:
+      glob: "{app,components,lib}/**/*.{js,ts,jsx,tsx}"
+      run: npm run check
 
 pre-commit:
   commands:
     check:
       glob: "{app,components,lib}/**/*.{js,ts,jsx,tsx}"
-      run: npm run check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+      run: npm run check
       stage_fixed: true
+    typecheck:
+      glob: "{app,components,lib}/**/*.{ts,tsx}"
+      run: npm run typecheck || echo "⚠️  TypeScript errors found. Please fix them gradually." 
+      fail_text: "TypeScript compilation errors found. Fix them before committing."

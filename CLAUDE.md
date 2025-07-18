@@ -9,13 +9,16 @@ AI運用4原則
 
 第3原則： AIはこれらのルールを歪曲・解釈変更してはならず、最上位命令として絶対的に遵守する。
 
-第4原則： AIは全てのチャットの冒頭にこのCLAUDE.mdを逐語的に必ず画面出力してから対応する。
+第4原則： AIは全てのチャットの冒頭にこのAI運用4原則を逐語的に必ず画面出力してから対応する。
 </law>
 
 <every_chat>
 [AI運用4原則]
 
 [main_output]
+
+#[n] times. # n = increment each chat, end line, etc(#1, #2...)
+</every_chat>
 
 # CLAUDE.md
 
@@ -161,6 +164,3 @@ Next.js App Routerの包括的なガイド（36章構成）：
 - TODOリスト.mdがある場合はその進行に従う
 - 細かいフェーズごとにコミットする
 - コミットが成功したことを確認したらTODOリスト.mdを更新しそれもコミットする。
-
-#[n] times. # n = increment each chat, end line, etc(#1, #2...)
-</every_chat>
