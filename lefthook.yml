@@ -13,7 +13,11 @@ pre-commit:
       glob: "{app,components,lib}/**/*.{js,ts,jsx,tsx}"
       run: npm run check
       stage_fixed: true
+    test:
+      glob: "{app,components,lib}/**/*.{js,ts,jsx,tsx}"
+      run: npm run test:run
+      stage_fixed: true
     typecheck:
       glob: "{app,components,lib}/**/*.{ts,tsx}"
-      run: npm run typecheck || echo "⚠️  TypeScript errors found. Please fix them gradually." 
+      run: npm run typecheck
       fail_text: "TypeScript compilation errors found. Fix them before committing."

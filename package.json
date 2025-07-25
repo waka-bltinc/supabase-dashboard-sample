@@ -15,7 +15,9 @@
 		"test:run": "vitest run",
 		"test:watch": "vitest --watch",
 		"db": "supabase start",
-		"db:reset": "supabase db reset",
+		"db:reset": "npm run build:seed && supabase db reset",
+		"db:reset:force": "supabase db reset",
+		"build:seed": "cat supabase/seeds/*.sql > supabase/seed.sql",
 		"migrate": "supabase db push",
 		"func": "supabase function deploy"
 	},
